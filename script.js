@@ -1,5 +1,15 @@
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
+var timerStart = 6
+
+function timerFunction(){
+    var timer = setInterval(function(timerStart){
+        timerStart--
+        console.log("Something")
+    }, 1000);
+}
+
+timerFunction();
 
 // WHEN I answer a question
 // THEN I am presented with another question
