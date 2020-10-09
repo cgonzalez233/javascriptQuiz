@@ -17,19 +17,35 @@
         <div class="card-body center">
             <header>
                 <h2>Javascript Quiz</h2>
+                <h3 id="timer">10</h3>
+                <div id="highscore">
+                    <a href="#" class="btn btn-primary btn-sm">Highscore</a>
+                </div>
             </header>
             <div class="question">
-                <h5>Question</h5>
+                <h5 id="quesDisplay"></h5>
             </div>
             <div class="answers">
                 <ul>
-                    <p class="list answer1">Answer 1</p>
-                    <p class="list answer2">Answer 2</p>
-                    <p class="list answer3">Answer 3</p>
-                    <p class="list answer4">Answer 4</p>
+                    <!-- <label class="btn active">
+                    <input type="radio" name="answers" id="button1"><p class="list" id="ansDisplay1"></p>
+                    </label>
+                    <label class="btn active">
+                    <input type="radio" name="answers" id="button2"><p class="list" id="ansDisplay2"></p>
+                    </label>
+                    <label class="btn active">
+                    <input type="radio" name="answers" id="button3"><p class="list" id="ansDisplay3"></p>
+                    </label>
+                    <label class="btn active">
+                    <input type="radio" name="answers" id="button4"><p class="list" id="ansDisplay4"></p>
+                    </label> -->
+                    <p class="list" id="ansDisplay1"></p>
+                    <p class="list" id="ansDisplay2"></p>
+                    <p class="list" id="ansDisplay3"></p>
+                    <p class="list" id="ansDisplay4"></p>
                 </ul>
             </div>   
-          <a href="#" class="btn btn-primary">Submit</a>
+          <a href="#" class="btn btn-primary" id="submit">Start</a>
         </div>
       </div>
     
@@ -38,5 +54,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <!-- JS Script Links -->
+    <script src="script.js"></script>
 </body>
 </html>

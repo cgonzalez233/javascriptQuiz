@@ -2,6 +2,7 @@ body, html {
     background-color: #f9c5d1;
     background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
     height: 100%;
+    min-height: fit-content;
     margin: 0;
     background-position: center;
     background-repeat: no-repeat;
@@ -57,7 +58,21 @@ header {
 .btn {
     background-color: #a4508b;
     background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);
-    margin: 50px auto auto 75px;
-    display: block;
-   justify-content: center;
+    margin: 50px auto auto 90px;
+}
+
+.list {
+    font-weight: bolder;
+    font-size: large;
+}
+
+.list:hover {
+    color: #5f0a87;
+    cursor: pointer;
+}
+
+#highscore {
+    position: fixed;
+    top: -40px;
+    left: -210px;
 }
