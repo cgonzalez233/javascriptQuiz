@@ -2,32 +2,25 @@
 // THEN a timer starts and I am presented with a question
 var timerDisplay = document.querySelector("#timer")
 var timerStart = 60
+// Timer var
 
-
+// Display var
 var quesDisplay = document.querySelector("#quesDisplay")
 var ansDisplay1 = document.querySelector("#ansDisplay1")
 var ansDisplay2 = document.querySelector("#ansDisplay2")
 var ansDisplay3 = document.querySelector("#ansDisplay3")
 var ansDisplay4 = document.querySelector("#ansDisplay4")
+var container = document.querySelector(".container")
+// Display var
 
-
-// function timerFunction(){
-//     var timer = setInterval(function(){
-//         if (timerStart > 0){
-//             timerDisplay.textContent = timerStart;
-//             timerStart--;
-//             timerDisplay.textContent = timerStart;
-//             if (timerStart === 0){
-//                 alert("Yay");
-//             }
-//         }
-//     }, 1000);
-// }
-
-
+// Button var
 var btn = document.querySelector("#submit")
+var hiScore = document.querySelector("#highscore")
+// Button var
 
+// Quiz Questions and Answers
 var quizData = [
+
     {
         question: "Question 1",
         answer1: "Answer 1",
@@ -58,7 +51,9 @@ var quizData = [
         correct: "Answer 3"
     }
 ];
+// Quiz Questions and Answers
 
+// Question functions
 quizNum = 0
 
 function quesFunction (){
@@ -72,19 +67,41 @@ function quesFunction (){
 
 };
 
+
+function timerFunction(){
+    setInterval(function(){
+        if (timerStart > 0){
+            timerDisplay.textContent = timerStart;
+            timerStart--;
+            timerDisplay.textContent = timerStart;
+            if (timerStart === 0){
+            }
+        } 
+        if (timerStart < 1);{
+            console.log("test");
+        }
+    }, 1000);
+}
+// Question functions
+
+// Button functions
 btn.addEventListener("click", function(){
     if (quizNum < quizData.length){
-        btn.textContent = "Submit"
+        btn.textContent = "Submit";
+        hiScore.style.display = 'none';
+        timerDisplay.style.display = 'block';
         quesFunction()
+        timerFunction()
     }else {
-        var userResponse = prompt("You finished! Please enter your name below!")
-        btn.textContent = "Restart"
+        var userResponse = prompt("You finished! Please enter your name below!");
+        btn.textContent = "Restart";
+        hiScore.style.display = 'block';
         quizNum = 0
-
-
+        timerStart = 60
 
     }
 });
+// Button function
 
 
 
