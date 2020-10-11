@@ -22,63 +22,103 @@ var hiScore = document.querySelector("#highscore")
 var quizData = [
 
     {
-        question: "Question 1",
-        answer1: "Answer 1",
-        answer2: "Answer 2",
-        answer3: "Answer 3",
-        answer4: "Answer 4",
-        correct: "Answer 1"
+        question: "Commonly used data types DO NOT include",
+        answer1: "Strings",
+        answer2: "Booleans",
+        answer3: "Alerts",
+        answer4: "Numbers",
+        correct: "Alerts"
     }, {
-        question: "Question 2",
-        answer1: "Answer A",
-        answer2: "Answer B",
-        answer3: "Answer C",
-        answer4: "Answer D",
-        correct: "Answer B"
+        question: "The condition in an if/else statement is enclosed within ____",
+        answer1: "Quotes",
+        answer2: "Curly Brackets",
+        answer3: "Parenthesis",
+        answer4: "Square Brackets",
+        correct: "Parenthesis"
     },{
-        question: "Question 3",
-        answer1: "Answer One",
-        answer2: "Answer Two",
-        answer3: "Answer Three",
-        answer4: "Answer Four",
-        correct: "Answer Four"
+        question: "Arrays in JavaScript can be used to store",
+        answer1: "Numbers and Strings",
+        answer2: "Other Arrays",
+        answer3: "Booleans",
+        answer4: "All of the Above",
+        correct: "All of the Above"
     },{
-        question: "Question 4",
-        answer1: "Answer 1",
-        answer2: "Answer 2",
-        answer3: "Answer 3",
-        answer4: "Answer 4",
-        correct: "Answer 3"
+        question: "String values must be enclosed within ____ when being assigned to variables",
+        answer1: "Commas",
+        answer2: "Curly Brackets",
+        answer3: "Quotes",
+        answer4: "Parenthesis",
+        correct: "Quotes"
+    },{
+        question: "A very useful tool used during development and debugging for printing content to the debugger is",
+        answer1: "JavaScript",
+        answer2: "Terminal/Bash",
+        answer3: "For Loops",
+        answer4: "console.log",
+        correct: "console.log"
     }
 ];
 // Quiz Questions and Answers
 
 // Question functions
 quizNum = 0
+var score = 0;
+
+function checkAnswer() {
+  console.log('check answer');
+
+  console.log(this.textContent)
+  console.log(quizData[quizNum].correct)  
+
+  if (quizData[quizNum].correct === this.textContent) {
+    console.log('CORRECT');
+    score++;
+  }
+  else {
+    console.log('INCORRECT')
+    timerStart -= 10
+  }
+
+  alert(score);
+
+  quizNum++;
+  quesFunction();
+}
 
 function quesFunction (){
     var currentQuiz = quizData[quizNum]
     quesDisplay.textContent = currentQuiz.question
+
     ansDisplay1.textContent = currentQuiz.answer1
     ansDisplay2.textContent = currentQuiz.answer2
     ansDisplay3.textContent = currentQuiz.answer3
     ansDisplay4.textContent = currentQuiz.answer4
-    quizNum++
 
+    ansDisplay1.addEventListener('click', checkAnswer);
+    ansDisplay2.addEventListener('click', checkAnswer);
+    ansDisplay3.addEventListener('click', checkAnswer);
+    ansDisplay4.addEventListener('click', checkAnswer);
 };
+
+function endQuiz() {
+  alert('END QUIZ = TIME OUT')
+
+  // TODO: Show end of quiz container.
+  // TODO: Put score on the element in the end of quiz container.
+
+}
 
 
 function timerFunction(){
-    setInterval(function(){
+    var timeInterval = setInterval(function(){
         if (timerStart > 0){
-            timerDisplay.textContent = timerStart;
             timerStart--;
             timerDisplay.textContent = timerStart;
+            
             if (timerStart === 0){
+              clearInterval(timeInterval);
+              endQuiz();
             }
-        } 
-        if (timerStart < 1);{
-            console.log("test");
         }
     }, 1000);
 }
@@ -90,9 +130,12 @@ btn.addEventListener("click", function(){
         btn.textContent = "Submit";
         hiScore.style.display = 'none';
         timerDisplay.style.display = 'block';
+        timerDisplay.textContent = timerStart;
+        this.style.display = 'none';
+
         quesFunction()
         timerFunction()
-    }else {
+    } else {
         var userResponse = prompt("You finished! Please enter your name below!");
         btn.textContent = "Restart";
         hiScore.style.display = 'block';

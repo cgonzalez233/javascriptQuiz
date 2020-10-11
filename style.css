@@ -41,6 +41,7 @@ header {
 .question {
     text-align: center;
     justify-content: center;
+    
     padding: 25px;
     margin-bottom: -30px;
     font-family: 'Poppins', sans-serif;
