@@ -1,21 +1,24 @@
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
-var timerDisplay = document.querySelector("#timer")
-var timerStart = 60
+var timerDisplay = document.querySelector("#timer");
+var timerStart = 60;
 // Timer var
 
 // Display var
-var quesDisplay = document.querySelector("#quesDisplay")
-var ansDisplay1 = document.querySelector("#ansDisplay1")
-var ansDisplay2 = document.querySelector("#ansDisplay2")
-var ansDisplay3 = document.querySelector("#ansDisplay3")
-var ansDisplay4 = document.querySelector("#ansDisplay4")
-var container = document.querySelector(".container")
+var quesDisplay = document.querySelector("#quesDisplay");
+var ansDisplay1 = document.querySelector("#ansDisplay1");
+var ansDisplay2 = document.querySelector("#ansDisplay2");
+var ansDisplay3 = document.querySelector("#ansDisplay3");
+var ansDisplay4 = document.querySelector("#ansDisplay4");
+var container = document.querySelector(".container");
+var title = document.querySelector("#title");
+var answerDiv = document.querySelector(".answers");
+var hiScore = document.querySelector("#hiScore");
 // Display var
 
 // Button var
-var btn = document.querySelector("#submit")
-var hiScore = document.querySelector("#highscore")
+var btn = document.querySelector("#submit");
+var hiScore = document.querySelector("#hiScore");
 // Button var
 
 // Quiz Questions and Answers
@@ -61,47 +64,59 @@ var quizData = [
 // Quiz Questions and Answers
 
 // Question functions
-quizNum = 0
+quizNum = 0;
 var score = 0;
 
 function checkAnswer() {
   console.log('check answer');
 
-  console.log(this.textContent)
-  console.log(quizData[quizNum].correct)  
+  console.log(this.textContent);
+  console.log(quizData[quizNum].correct);  
 
   if (quizData[quizNum].correct === this.textContent) {
     console.log('CORRECT');
     score++;
   }
   else {
-    console.log('INCORRECT')
-    timerStart -= 10
+    console.log('INCORRECT');
+    timerStart -= 10;
   }
-
-  alert(score);
 
   quizNum++;
   quesFunction();
 }
 
 function quesFunction (){
-    var currentQuiz = quizData[quizNum]
-    quesDisplay.textContent = currentQuiz.question
+    var currentQuiz = quizData[quizNum];
+    quesDisplay.textContent = currentQuiz.question;
 
-    ansDisplay1.textContent = currentQuiz.answer1
-    ansDisplay2.textContent = currentQuiz.answer2
-    ansDisplay3.textContent = currentQuiz.answer3
-    ansDisplay4.textContent = currentQuiz.answer4
+    ansDisplay1.textContent = currentQuiz.answer1;
+    ansDisplay2.textContent = currentQuiz.answer2;
+    ansDisplay3.textContent = currentQuiz.answer3;
+    ansDisplay4.textContent = currentQuiz.answer4;
 
     ansDisplay1.addEventListener('click', checkAnswer);
     ansDisplay2.addEventListener('click', checkAnswer);
     ansDisplay3.addEventListener('click', checkAnswer);
     ansDisplay4.addEventListener('click', checkAnswer);
-};
+
+    if (quizNum === 6){
+        endQuiz();
+    }
+}
 
 function endQuiz() {
-  alert('END QUIZ = TIME OUT')
+  alert('END QUIZ = TIME OUT');
+  quesDisplay.style.display = 'none';
+  answerDiv.style.display = 'none';
+  container.style.display = 'none';
+  title.style.display = 'none';
+  hiScore.style.display = 'block';
+  hiScore.textContent = "Your High Score: " + score;
+
+
+
+
 
   // TODO: Show end of quiz container.
   // TODO: Put score on the element in the end of quiz container.
@@ -115,7 +130,7 @@ function timerFunction(){
             timerStart--;
             timerDisplay.textContent = timerStart;
             
-            if (timerStart === 0){
+            if (timerStart === 0 || quizNum === 5){
               clearInterval(timeInterval);
               endQuiz();
             }
@@ -133,14 +148,14 @@ btn.addEventListener("click", function(){
         timerDisplay.textContent = timerStart;
         this.style.display = 'none';
 
-        quesFunction()
-        timerFunction()
+        quesFunction();
+        timerFunction();
     } else {
         var userResponse = prompt("You finished! Please enter your name below!");
         btn.textContent = "Restart";
         hiScore.style.display = 'block';
-        quizNum = 0
-        timerStart = 60
+        quizNum = 0;
+        timerStart = 60;
 
     }
 });
